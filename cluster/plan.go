@@ -2,7 +2,7 @@ package cluster
 
 import (
 	"context"
-	"crypto/md5"
+	"crypto/sha256"
 	b64 "encoding/base64"
 	"encoding/json"
 	"fmt"
@@ -1270,7 +1270,7 @@ func (c *Cluster) getDefaultKubernetesServicesOptions(osType string) (v3.Kuberne
 }
 
 func getStringChecksum(config string) string {
-	configByteSum := md5.Sum([]byte(config))
+	configByteSum := sha256.Sum256([]byte(config))
 	return fmt.Sprintf("%x", configByteSum)
 }
 
